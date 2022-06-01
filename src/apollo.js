@@ -31,5 +31,7 @@ export const client = new ApolloClient({
     process.env.NODE_ENV === "production"
       ? "https://evencafe-backend.herokuapp.com/graphql"
       : "http://localhost:4400/graphql",
+  //  ? "http://localhost:4400/graphql"
+  // : "https://evencafe-backend.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });

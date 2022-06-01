@@ -21,6 +21,7 @@ const GoHome = styled.div`
 
 const Notification = styled.div`
   color: #2ecc71;
+  padding-top: 20px;
 `;
 
 const LOGIN_MUTATION = gql`
@@ -36,6 +37,7 @@ const LOGIN_MUTATION = gql`
 function Login() {
   const location = useLocation();
   const history = useHistory();
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -44,8 +46,10 @@ function Login() {
     clearErrors,
   } = useForm({
     mode: "onChange",
-    username: location?.state?.username || "",
-    password: location?.state?.password || "",
+    defaultValues: {
+      username: location?.state?.username || "",
+      password: location?.state?.password || "",
+    },
   });
   const onCompleted = (data) => {
     const {

@@ -46,6 +46,7 @@ function Signup() {
     } = data;
     if (!ok) {
       setError("result", { message: error });
+      return;
     }
     history.push(routes.login, {
       message: "회원가입 해주셔서 감사합니다!!",
@@ -53,6 +54,9 @@ function Signup() {
       password,
     });
   };
+  const [createAccount, { loading }] = useMutation(CREATEACCOUNT_MUTATION, {
+    onCompleted,
+  });
   const {
     register,
     handleSubmit,
@@ -67,19 +71,12 @@ function Signup() {
     if (loading) {
       return;
     }
-    const { email, password, name, username } = data;
     createAccount({
-      validate: {
-        email,
-        password,
-        name,
-        username,
+      variables: {
+        ...data,
       },
     });
   };
-  const [createAccount, { loading }] = useMutation(CREATEACCOUNT_MUTATION, {
-    onCompleted,
-  });
   const clearLoginError = () => {
     clearErrors("result");
   };
@@ -98,9 +95,9 @@ function Signup() {
             {...register("email", {
               required: "이메일 정보는 필수일지도?",
             })}
+            onFocus={clearLoginError}
             type="email"
             placeholder="Email"
-            onFocus={clearLoginError}
           />
           <FormError message={errors?.email?.message} />
           <Input
@@ -141,6 +138,7 @@ function Signup() {
             value={loading ? "로딩중..." : "회원가입"}
             disabled={!isValid || loading}
           />
+          <FormError message={errors?.result?.message} />
         </form>
       </FormBox>
       <BottomBox
