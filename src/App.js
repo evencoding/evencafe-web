@@ -9,7 +9,7 @@ import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme, GlobalStyles } from "./GlobalStyles";
 import routes from "./routes";
 import { HelmetProvider } from "react-helmet-async";
-import Header from "./components/headers/Header";
+import Layout from "./components/Layout";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -22,7 +22,9 @@ function App() {
           <Router>
             <Switch>
               <Route path={routes.home} exact>
-                <Home />
+                <Layout>
+                  <Home />
+                </Layout>
               </Route>
               <Route path={routes.login} exact>
                 {isLoggedIn ? <Home /> : <Login />}

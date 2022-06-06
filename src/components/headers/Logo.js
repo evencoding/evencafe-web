@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 900;
   display: flex;
   align-items: center;
@@ -13,9 +13,9 @@ const Container = styled.div`
 `;
 
 const Img = styled.img`
-  width: 35px;
+  width: 32px;
   position: absolute;
-  top: 18px;
+  top: 10px;
 `;
 
 function Logo() {
@@ -23,8 +23,8 @@ function Logo() {
     <Container>
       <div>
         <Img alt="logo" src={require("../../img/logo.png")} />
-        <div>NOMAD</div>
-        <div>COFFEE</div>
+        <div>EVEN</div>
+        <div>CAFE</div>
       </div>
     </Container>
   );

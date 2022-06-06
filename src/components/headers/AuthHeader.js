@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import routes from "../../routes";
 
 const Container = styled.div`
-  padding: 20px;
+  padding: 12px 20px;
   width: inherit;
   display: flex;
   align-items: center;
