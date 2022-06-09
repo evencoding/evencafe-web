@@ -37,7 +37,6 @@ const LOGIN_MUTATION = gql`
 function Login() {
   const location = useLocation();
   const history = useHistory();
-  console.log(location);
   const {
     register,
     handleSubmit,
@@ -64,7 +63,7 @@ function Login() {
     history.push(routes.home);
   };
   const [login, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
-  const onSibmitValid = (data) => {
+  const onSubmitValid = (data) => {
     if (loading) {
       return;
     }
@@ -83,7 +82,7 @@ function Login() {
       <FormBox>
         <Greeting hello="로그인" haveFun="좋은 하루 보내세요!" />
         <Notification>{location?.state?.message}</Notification>
-        <form onSubmit={handleSubmit(onSibmitValid)}>
+        <form onSubmit={handleSubmit(onSubmitValid)}>
           <Input
             {...register("username", {
               required: "username is required",

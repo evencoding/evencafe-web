@@ -1,10 +1,8 @@
 import { Link, useHistory } from "react-router-dom";
-import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import styled from "styled-components";
 import DarkMode from "./DarkMode";
 import Logo from "./Logo";
 import routes from "../../routes";
-import { useEffect } from "react";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar, isLoggedInVar, logUserOut } from "../../apollo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,13 +10,14 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import useUser from "../hooks/useUser";
 
-const Container = styled(motion.div)`
+const Container = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${(props) => props.theme.headerBg};
 `;
 
 const Wrapper = styled.div`
@@ -82,36 +81,11 @@ const Input = styled.div`
   }
 `;
 
-function Header() {
+function SubHeader() {
   const history = useHistory();
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const isDark = useReactiveVar(darkModeVar);
   const { data } = useUser();
-  const navVariants = {
-    top: {
-      backgroundColor: "rgba(0,0,0,0)",
-    },
-    scroll: {
-      backgroundColor: isDark ? "rgba(1, 1, 1, 1)" : "#B55E28",
-    },
-    toggleDarkMode: {
-      backgroundColor: isDark ? "rgba(1, 1, 1, 1)" : "#B55E28",
-    },
-  };
-  const navAnimation = useAnimation();
-  const { scrollY } = useViewportScroll();
-  useEffect(() => {
-    scrollY.onChange(() => {
-      if (scrollY.get() > 20) {
-        navAnimation.start("scroll");
-      } else {
-        navAnimation.start("top");
-      }
-    });
-    if (scrollY.get() > 20) {
-      navAnimation.start("toggleDarkMode");
-    }
-  }, [scrollY, navAnimation, isDark]);
   const { register, handleSubmit } = useForm();
   const onSubmitValid = (data) => {
     const { search } = data;
@@ -122,11 +96,7 @@ function Header() {
     }
   };
   return (
-    <Container
-      variants={navVariants}
-      animate={navAnimation}
-      transition={{ duration: 0.05 }}
-    >
+    <Container isDark={isDark}>
       <Wrapper>
         <Left>
           <Link to={routes.home}>
@@ -176,4 +146,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default SubHeader;

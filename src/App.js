@@ -10,6 +10,11 @@ import { darkTheme, lightTheme, GlobalStyles } from "./GlobalStyles";
 import routes from "./routes";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
+import SearchShop from "./screens/SearchShop";
+import SearchCategory from "./screens/SearchCategory";
+import Profile from "./screens/Profile";
+import CreateCoffeeShop from "./screens/CreateCoffeeShop";
+import Shop from "./screens/Shop";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -27,13 +32,48 @@ function App() {
                 </Layout>
               </Route>
               <Route path={routes.login} exact>
-                {isLoggedIn ? <Home /> : <Login />}
+                {isLoggedIn ? (
+                  <Layout>
+                    <Home />
+                  </Layout>
+                ) : (
+                  <Login />
+                )}
               </Route>
               {!isLoggedIn ? (
                 <Route path={routes.signUp} exact>
                   <Signup />
                 </Route>
               ) : null}
+              <Route exact path={routes.profile}>
+                <Layout>
+                  <Profile />
+                </Layout>
+              </Route>
+              <Route exact path={routes.createCoffeeShop}>
+                {isLoggedIn ? (
+                  <Layout>
+                    <CreateCoffeeShop />
+                  </Layout>
+                ) : (
+                  <Login />
+                )}
+              </Route>
+              <Route exact path={routes.searchCategory}>
+                <Layout>
+                  <SearchCategory />
+                </Layout>
+              </Route>
+              <Route exact path={routes.searchShop}>
+                <Layout>
+                  <SearchShop />
+                </Layout>
+              </Route>
+              <Route exact path={routes.shop}>
+                <Layout>
+                  <Shop />
+                </Layout>
+              </Route>
               <Route>
                 <NotFound />
               </Route>

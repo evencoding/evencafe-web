@@ -2,7 +2,7 @@ import styled from "styled-components";
 import bgImg from "../img/shard-2803941.jpg";
 
 const Img = styled.div`
-  height: 70vh;
+  height: 65vh;
   width: 100vw;
   position: absolute;
   z-index: -100;
@@ -11,15 +11,9 @@ const Img = styled.div`
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.2) 80%,
-      rgba(0, 0, 0, 1)
+      rgba(26, 24, 25, 1)
     ),
     url(${bgImg});
-  /* background-image: linear-gradient(
-      to bottom,
-      ${(props) => props.theme.homeImgTop},
-      ${(props) => props.theme.homeImgbutton}
-    ),
-    url(${bgImg}); */
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: cover;
