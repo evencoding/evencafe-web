@@ -19,7 +19,9 @@ function Layout({ children }) {
   } = history;
   return (
     <Container>
-      {pathname.startsWith("/profile") || pathname.startsWith("/add") ? (
+      {pathname.startsWith("/profile") ||
+      pathname.startsWith("/add") ||
+      pathname.startsWith("/categories") ? (
         <SubHeader />
       ) : (
         <Header />

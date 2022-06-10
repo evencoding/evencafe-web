@@ -3,7 +3,6 @@ import styled from "styled-components";
 import DarkMode from "./DarkMode";
 import Logo from "./Logo";
 import routes from "../../routes";
-import useUser from "../hooks/useUser";
 
 const Container = styled.div`
   padding: 12px 20px;
@@ -21,7 +20,6 @@ const Right = styled.div`
 `;
 
 function AuthHeader() {
-  const loggedInUser = useUser();
   return (
     <Container>
       <Link to={routes.home}>

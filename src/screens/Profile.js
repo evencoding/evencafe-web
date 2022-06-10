@@ -42,7 +42,7 @@ const SEE_PROFILE_QUERY = gql`
 `;
 
 const ProfileContainer = styled.div`
-  margin-top: 100px;
+  margin-top: ${(props) => props.theme.subHeaderMT};
 `;
 
 function Profile() {

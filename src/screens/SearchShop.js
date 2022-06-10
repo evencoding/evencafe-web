@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+import CoffeeShops from "../components/Home/CoffeeShops";
 import HomeImg from "../components/HomeImg";
 import PageTitle from "../components/PageTitle";
 
@@ -23,14 +24,25 @@ const Keyword = styled.div`
     }
   }
 `;
+const Notfound = styled.div`
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+`;
 
 const SEARCHCOFFEESHOP_QUERY = gql`
   query searchCoffeeShop($keyword: String!) {
     searchCoffeeShop(keyword: $keyword) {
       id
       name
-      latitude
-      longitude
+      adress
+      followers
+      categories {
+        name
+      }
+      bio
       avatar
       user {
         avatarURL
@@ -68,6 +80,13 @@ function SearchShop() {
             커피샵 <span>{keyword}</span> 에 대한 검색결과 일지도!?
           </span>
         </Keyword>
+        {data?.searchCoffeeShop?.length > 0 ? (
+          <CoffeeShops shops={data?.searchCoffeeShop} />
+        ) : (
+          <Notfound>
+            <span>{keyword}에 대한 검색 결과가 존재하지 않습니다ㅠㅠ</span>
+          </Notfound>
+        )}
       </Main>
     </Container>
   );

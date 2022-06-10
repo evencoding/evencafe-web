@@ -30,3 +30,21 @@ export const CoffeeShopForm = styled.div`
     }
   }
 `;
+
+export const shopBtn = styled.div`
+  cursor: pointer;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 800;
+  border-radius: 8px;
+  width: 150px;
+  height: 35px;
+  color: white;
+  transition: 0.2s;
+  &:hover {
+    opacity: 0.6;
+  }
+`;

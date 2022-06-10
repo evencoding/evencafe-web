@@ -119,7 +119,7 @@ function SubHeader() {
             </form>
           </Search>
           <RightMenu>
-            <Link to={routes.category}>
+            <Link to={`/categories`}>
               <span>Category</span>
             </Link>
           </RightMenu>

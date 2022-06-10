@@ -87,7 +87,6 @@ function UpdateCoffeeShop({ id }) {
         onCompleted: onCompletedUpload,
       });
     } else {
-      console.log("?");
       toggleShopUpdateBtn();
     }
   };

@@ -11,10 +11,10 @@ import routes from "./routes";
 import { HelmetProvider } from "react-helmet-async";
 import Layout from "./components/Layout";
 import SearchShop from "./screens/SearchShop";
-import SearchCategory from "./screens/SearchCategory";
 import Profile from "./screens/Profile";
 import CreateCoffeeShop from "./screens/CreateCoffeeShop";
 import Shop from "./screens/Shop";
+import Categories from "./screens/Categories";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -59,14 +59,14 @@ function App() {
                   <Login />
                 )}
               </Route>
-              <Route exact path={routes.searchCategory}>
-                <Layout>
-                  <SearchCategory />
-                </Layout>
-              </Route>
               <Route exact path={routes.searchShop}>
                 <Layout>
                   <SearchShop />
+                </Layout>
+              </Route>
+              <Route exact path={routes.categories}>
+                <Layout>
+                  <Categories />
                 </Layout>
               </Route>
               <Route exact path={routes.shop}>

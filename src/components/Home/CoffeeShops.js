@@ -14,7 +14,7 @@ const CoffeeShopsGrid = styled.div`
 function CoffeeShops({ shops, title }) {
   return (
     <MenuContainer>
-      <MenuTitle>{title}</MenuTitle>
+      {title && <MenuTitle>{title}</MenuTitle>}
       <CoffeeShopsGrid>
         {shops?.map((coffeeShop) => (
           <CoffeeShopCard key={coffeeShop.id} coffeeShop={coffeeShop} />

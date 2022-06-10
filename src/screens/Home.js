@@ -1,12 +1,13 @@
 import React from "react";
 import PageTitle from "../components/PageTitle";
 import { useHistory } from "react-router";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useReactiveVar } from "@apollo/client";
 import styled from "styled-components";
 import HomeImg from "../components/HomeImg";
 import Category from "../components/Home/Category";
 import { MenuContainer, MenuTitle } from "../components/Home/MenuShared";
 import CoffeeShops from "../components/Home/CoffeeShops";
+import { isLoggedInVar } from "../apollo";
 
 const SEECATEGORIES_QUERY = gql`
   query seeCategories($page: Int!) {
@@ -53,8 +54,15 @@ const Main = styled.div`
   align-items: center;
 `;
 
+const LikedGreeting = styled.div`
+  font-size: 14px;
+  opacity: 0.7;
+  font-weight: 600;
+`;
+
 function Home() {
   const history = useHistory();
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
   const { data: categoryData, loading: categoryLoading } = useQuery(
     SEECATEGORIES_QUERY,
     {
@@ -83,8 +91,13 @@ function Home() {
         />
         <MenuContainer>
           <MenuTitle>즐겨찾기 한 카페</MenuTitle>
-          <span>즐겨찾기 한 카페를 볼 수 있어요</span>
-          <span>로그인 후, 가고싶은 카페를 즐겨찾기 해 보세요 !!</span>
+          <LikedGreeting>
+            {isLoggedIn ? (
+              <span>즐겨찾기 한 카페를 볼 수 있어요</span>
+            ) : (
+              <span>로그인 후, 가고싶은 카페를 즐겨찾기 해 보세요 !!</span>
+            )}
+          </LikedGreeting>
         </MenuContainer>
         <CoffeeShops
           title="추천 카페"

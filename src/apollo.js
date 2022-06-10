@@ -11,7 +11,9 @@ import { createUploadLink } from "apollo-upload-client";
 const TOKEN = "token";
 const DARK_MODE = "DARK_MODE";
 
-export const isLoggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
+export const isLoggedInVar = makeVar(
+  Boolean(localStorage.getItem(TOKEN)) || true
+);
 export const darkModeVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
 export const showUpdateBtn = makeVar(false);
 

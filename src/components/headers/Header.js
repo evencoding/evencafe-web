@@ -116,7 +116,7 @@ function Header() {
   const onSubmitValid = (data) => {
     const { search } = data;
     if (search.match(/^#[ㄱ-ㅎ|가-힣|a-z|A-Z|]+/g)) {
-      history.push(`/search/category?name=${search.split("#")[1]}`);
+      history.push(`/categories/${search.split("#")[1]}`);
     } else {
       history.push(`/search/shop?keyword=${search}`);
     }
@@ -149,7 +149,7 @@ function Header() {
             </form>
           </Search>
           <RightMenu>
-            <Link to={routes.category}>
+            <Link to={`/categories`}>
               <span>Category</span>
             </Link>
           </RightMenu>
