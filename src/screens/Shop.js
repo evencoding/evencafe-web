@@ -1,7 +1,7 @@
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { isLoggedInVar, showUpdateBtn, toggleShopUpdateBtn } from "../apollo";
+import { showUpdateBtn, toggleShopUpdateBtn } from "../apollo";
 import useUser from "../components/hooks/useUser";
 import { shopBtn } from "../components/shared";
 import DeleteShop from "../components/shop/DeleteShop";
@@ -85,7 +85,7 @@ const UpdateBtn = styled(shopBtn)`
 
 function Shop() {
   const showUpdate = useReactiveVar(showUpdateBtn);
-  const loggedInUser = useReactiveVar(isLoggedInVar);
+  const { data: loggedInUser } = useUser();
   const { id } = useParams();
   const history = useHistory();
   const { data } = useQuery(SEE_COFFEESHOP_QUERY, {
@@ -96,13 +96,10 @@ function Shop() {
     <ShopContainer>
       <ShopImg url={data?.seeCoffeeShop?.avatar} />
       <ShopInfo>
-        <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
+        <div>
+          <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
+        </div>
         <ShopPhotos>
-          {/* {data?.seeCoffeeShop?.photos?.length > 0
-            ? data?.seeCoffeeShop?.photos?.map((photo) => (
-                <ShopPhoto key={photo.id}></ShopPhoto>
-              ))
-            : null} */}
           {data?.seeCoffeeShop?.photos?.map((photo) => (
             <ShopPhoto key={photo.id} url={photo?.url}></ShopPhoto>
           ))}
