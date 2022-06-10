@@ -69,7 +69,6 @@ function SearchShop() {
       keyword,
     },
   });
-  console.log(data);
   return (
     <Container>
       <PageTitle title="Search" />

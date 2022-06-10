@@ -64,7 +64,6 @@ function UpdateCoffeeShop({ id }) {
     if (!ok) {
       return;
     }
-    toggleShopUpdateBtn();
   };
   const [uploadPhoto, { loading: uploadLoading }] = useMutation(UPLOAD_PHOTO);
   const onCompletedUpdate = (data) => {
@@ -86,9 +85,8 @@ function UpdateCoffeeShop({ id }) {
         },
         onCompleted: onCompletedUpload,
       });
-    } else {
-      toggleShopUpdateBtn();
     }
+    toggleShopUpdateBtn();
   };
   const [updateShop, { loading: updateLoading }] = useMutation(
     EDIT_COFFEESHOP,

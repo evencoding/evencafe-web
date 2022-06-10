@@ -1,8 +1,8 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery, useReactiveVar } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { isLoggedInVar } from "../apollo";
 import CoffeeShops from "../components/Home/CoffeeShops";
-import useUser from "../components/hooks/useUser";
 import routes from "../routes";
 // 내가 만든 커피숍
 // add createCoffeeShop
@@ -47,7 +47,7 @@ const ProfileContainer = styled.div`
 
 function Profile() {
   const { username } = useParams();
-  const { data: loggedInUser } = useUser();
+  const { loggedInUser } = useReactiveVar(isLoggedInVar);
   const { data } = useQuery(SEE_PROFILE_QUERY, {
     variables: {
       username,

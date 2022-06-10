@@ -1,7 +1,7 @@
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { showUpdateBtn, toggleShopUpdateBtn } from "../apollo";
+import { isLoggedInVar, showUpdateBtn, toggleShopUpdateBtn } from "../apollo";
 import useUser from "../components/hooks/useUser";
 import { shopBtn } from "../components/shared";
 import DeleteShop from "../components/shop/DeleteShop";
@@ -48,10 +48,30 @@ const ShopImg = styled.div`
   background-size: cover;
   opacity: 0.5;
 `;
-const ShopInfo = styled.div``;
+const ShopInfo = styled.div`
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 const ShopName = styled.span`
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 900;
+`;
+const ShopPhotos = styled.div`
+  display: flex;
+`;
+const ShopPhoto = styled.div`
+  border-radius: 20px;
+  width: 200px;
+  height: 200px;
+  background-image: url(${(props) => props.url});
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
 `;
 const Btns = styled.div`
   position: absolute;
@@ -65,9 +85,9 @@ const UpdateBtn = styled(shopBtn)`
 
 function Shop() {
   const showUpdate = useReactiveVar(showUpdateBtn);
+  const loggedInUser = useReactiveVar(isLoggedInVar);
   const { id } = useParams();
   const history = useHistory();
-  const { data: loggedInUser } = useUser();
   const { data } = useQuery(SEE_COFFEESHOP_QUERY, {
     variables: { id: parseInt(id) },
   });
@@ -77,6 +97,16 @@ function Shop() {
       <ShopImg url={data?.seeCoffeeShop?.avatar} />
       <ShopInfo>
         <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
+        <ShopPhotos>
+          {/* {data?.seeCoffeeShop?.photos?.length > 0
+            ? data?.seeCoffeeShop?.photos?.map((photo) => (
+                <ShopPhoto key={photo.id}></ShopPhoto>
+              ))
+            : null} */}
+          {data?.seeCoffeeShop?.photos?.map((photo) => (
+            <ShopPhoto key={photo.id} url={photo?.url}></ShopPhoto>
+          ))}
+        </ShopPhotos>
       </ShopInfo>
       {showUpdate ? <UpdateCoffeeShop id={parseInt(id)} /> : null}
       <Btns>
