@@ -95,17 +95,20 @@ function Shop() {
   return (
     <ShopContainer>
       <ShopImg url={data?.seeCoffeeShop?.avatar} />
-      <ShopInfo>
-        <div>
-          <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
-        </div>
-        <ShopPhotos>
-          {data?.seeCoffeeShop?.photos?.map((photo) => (
-            <ShopPhoto key={photo.id} url={photo?.url}></ShopPhoto>
-          ))}
-        </ShopPhotos>
-      </ShopInfo>
-      {showUpdate ? <UpdateCoffeeShop id={parseInt(id)} /> : null}
+      {showUpdate ? (
+        <UpdateCoffeeShop id={parseInt(id)} />
+      ) : (
+        <ShopInfo>
+          <div>
+            <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
+          </div>
+          <ShopPhotos>
+            {data?.seeCoffeeShop?.photos?.map((photo) => (
+              <ShopPhoto key={photo.id} url={photo?.url}></ShopPhoto>
+            ))}
+          </ShopPhotos>
+        </ShopInfo>
+      )}
       <Btns>
         {data?.seeCoffeeShop?.user?.username === loggedInUser?.me?.username ? (
           <div>

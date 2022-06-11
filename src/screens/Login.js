@@ -50,17 +50,20 @@ function Login() {
       password: location?.state?.password || "",
     },
   });
+  console.log(isValid);
   const onCompleted = (data) => {
     const {
       login: { ok, error, token },
     } = data;
     if (!ok) {
       setError("result", { message: error });
+      return;
+    } else {
+      if (token) {
+        logUserIn(token);
+      }
+      history.push(routes.home);
     }
-    if (token) {
-      logUserIn(token);
-    }
-    history.push(routes.home);
   };
   const [login, { loading }] = useMutation(LOGIN_MUTATION, { onCompleted });
   const onSubmitValid = (data) => {
@@ -92,7 +95,7 @@ function Login() {
               },
               //   validate: (currentValue) => currentValue.includes("potato"),
             })}
-            onFocus={() => clearLoginError}
+            onFocus={() => clearLoginError()}
             type="text"
             placeholder="Username"
             hasError={Boolean(errors?.username?.message)}
@@ -106,7 +109,7 @@ function Login() {
                 message: "비밀번호는 8글자 이상일텐대이잉!?",
               },
             })}
-            onFocus={() => clearLoginError}
+            onFocus={() => clearLoginError()}
             type="password"
             placeholder="Password"
             hasError={Boolean(errors?.password?.message)}
