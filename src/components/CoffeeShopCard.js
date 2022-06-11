@@ -188,8 +188,10 @@ function CoffeeShopCard({ coffeeShop }) {
             <SeeCafe>
               <Link to={`/shop/${coffeeShop.id}`}>
                 <div>
-                  {coffeeShop?.name} 더보기{" "}
-                  <FontAwesomeIcon icon={faCircleChevronRight} />
+                  {coffeeShop?.name?.length > 9
+                    ? coffeeShop?.name?.substring(0, 10) + "..."
+                    : coffeeShop?.name}{" "}
+                  더보기 <FontAwesomeIcon icon={faCircleChevronRight} />
                 </div>
               </Link>
             </SeeCafe>
