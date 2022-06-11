@@ -66,6 +66,7 @@ function Categories() {
       page: 1,
     },
   });
+  console.log(shopData);
   return (
     <CategoriesContainer>
       <Category

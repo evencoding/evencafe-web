@@ -1,3 +1,4 @@
+import React from "react";
 import { faStar } from "@fortawesome/free-regular-svg-icons";
 import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -181,7 +182,14 @@ function CoffeeShopCard({ coffeeShop }) {
         <ButtonInfo>
           <CafeCategory>
             {coffeeShop?.categories?.map((category) => (
-              <span key={category.id}>{category.name}</span>
+              <span
+                key={category.id}
+                onClick={() =>
+                  history.push(`/categories/${category?.name?.split("#")[1]}`)
+                }
+              >
+                {category.name}
+              </span>
             ))}
           </CafeCategory>
           <ButtonRight>
