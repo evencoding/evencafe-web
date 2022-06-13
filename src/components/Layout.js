@@ -21,7 +21,8 @@ function Layout({ children }) {
     <Container>
       {pathname.startsWith("/profile") ||
       pathname.startsWith("/add") ||
-      pathname.startsWith("/categories") ? (
+      pathname.startsWith("/categories") ||
+      pathname.startsWith("/edit") ? (
         <SubHeader />
       ) : (
         <Header />

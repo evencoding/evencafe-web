@@ -4,6 +4,7 @@ const routes = {
   signUp: "/sign-up",
   category: "/category",
   profile: "/profile/:username",
+  editProfile: "/edit/profile/:username",
   searchShop: ["/search/shop", "/search/shop/:keyword"],
   editShop: "/shop/:id",
   createCoffeeShop: "/add",

@@ -15,6 +15,7 @@ import Profile from "./screens/Profile";
 import CreateCoffeeShop from "./screens/CreateCoffeeShop";
 import Shop from "./screens/Shop";
 import Categories from "./screens/Categories";
+import EditProfile from "./screens/EditProfile";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -48,6 +49,11 @@ function App() {
               <Route exact path={routes.profile}>
                 <Layout>
                   <Profile />
+                </Layout>
+              </Route>
+              <Route exact path={routes.editProfile}>
+                <Layout>
+                  <EditProfile />
                 </Layout>
               </Route>
               <Route exact path={routes.createCoffeeShop}>

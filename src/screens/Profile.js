@@ -4,8 +4,6 @@ import styled from "styled-components";
 import CoffeeShops from "../components/Home/CoffeeShops";
 import useUser from "../components/hooks/useUser";
 import routes from "../routes";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserInfo from "../components/UserInfo";
 
 const SEE_PROFILE_QUERY = gql`
@@ -38,6 +36,17 @@ const ProfileContainer = styled.div`
   margin-top: ${(props) => props.theme.subHeaderMT};
 `;
 
+const EditProfile = styled.div`
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  div {
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+`;
+
 function Profile() {
   const { username } = useParams();
   const { data: loggedInUser } = useUser();
@@ -48,10 +57,15 @@ function Profile() {
   });
   return (
     <ProfileContainer>
-      {loggedInUser?.me ? (
-        <Link to={routes.createCoffeeShop}>
-          <div>카페 등록하기</div>
-        </Link>
+      {loggedInUser?.me?.username === username ? (
+        <EditProfile>
+          <div>
+            <Link to={`/edit/profile/${username}`}>프로필 편집</Link>
+          </div>
+          <div>
+            <Link to={routes.createCoffeeShop}>카페 등록하기</Link>
+          </div>
+        </EditProfile>
       ) : null}
       <UserInfo data={data} />
       <CoffeeShops
