@@ -1,5 +1,5 @@
 import { gql, useQuery, useReactiveVar } from "@apollo/client";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { showUpdateBtn, toggleShopUpdateBtn } from "../apollo";
 import useUser from "../components/hooks/useUser";
@@ -87,11 +87,9 @@ function Shop() {
   const showUpdate = useReactiveVar(showUpdateBtn);
   const { data: loggedInUser } = useUser();
   const { id } = useParams();
-  const history = useHistory();
   const { data } = useQuery(SEE_COFFEESHOP_QUERY, {
     variables: { id: parseInt(id) },
   });
-  console.log(data);
   return (
     <ShopContainer>
       <ShopImg url={data?.seeCoffeeShop?.avatar} />

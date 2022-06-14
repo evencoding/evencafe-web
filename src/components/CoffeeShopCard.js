@@ -5,12 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileImage } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
+import { gql, useMutation } from "@apollo/client";
+import { LikedIcon } from "./shared";
+
+const TOGGLE_FOLLOW_COFFEESHOP_MUTATION = gql`
+  mutation toggleFollowCoffeeShop($name: String!) {
+    toggleFollowCoffeeShop(name: $name) {
+      ok
+    }
+  }
+`;
 
 const CaffeeCard = styled.div`
-  /* background-color: ${(props) => props.theme.fontColor}; */
-  /* box-shadow: 0px 0px 12px 0px ${(props) => props.theme.categoryColor}; */
   box-shadow: 0px 0px 12px 0px ${(props) => props.theme.fontColor};
-  /* color: ${(props) => props.theme.reverse}; */
   color: ${(props) => props.theme.fontColor};
   border-radius: 15px;
   height: 250px;
@@ -128,6 +135,56 @@ const AdminUser = styled.div`
 
 function CoffeeShopCard({ coffeeShop }) {
   const history = useHistory();
+  const updateFollowCoffeeShop = (cache, result) => {
+    const {
+      data: {
+        toggleFollowCoffeeShop: { ok },
+      },
+    } = result;
+    if (!ok) {
+      return;
+    }
+    cache.modify({
+      id: `CoffeeShop:${coffeeShop?.id}`,
+      fields: {
+        isFollowing(prev) {
+          return !prev;
+        },
+        followers(prev) {
+          if (coffeeShop?.isFollowing) {
+            return prev - 1;
+          }
+          return prev + 1;
+        },
+      },
+    });
+    cache.modify({
+      id: `User:${coffeeShop?.user?.username}`,
+      fields: {
+        followingShops(prev) {
+          prev.map((m) => console.log(m.__ref));
+          if (coffeeShop?.isFollowing) {
+            return prev.filter(
+              (p) => p.__ref !== `CoffeeShop:${coffeeShop?.id}`
+            );
+          }
+        },
+      },
+    });
+  };
+  const [toggleFollowCoffeeShop, { loading }] = useMutation(
+    TOGGLE_FOLLOW_COFFEESHOP_MUTATION,
+    {
+      update: updateFollowCoffeeShop,
+    }
+  );
+  const onClick = () => {
+    toggleFollowCoffeeShop({
+      variables: {
+        name: coffeeShop?.name,
+      },
+    });
+  };
   const seeShop = () => {
     history.push(`/shop/${coffeeShop?.id}`);
   };
@@ -164,8 +221,12 @@ function CoffeeShopCard({ coffeeShop }) {
             </Link>
             <LikedNumber>{coffeeShop?.followers} 명이 즐겨찾기함</LikedNumber>
           </div>
-          <Like>
-            <FontAwesomeIcon icon={faStar} />
+          <Like onClick={onClick}>
+            {coffeeShop?.isFollowing ? (
+              <LikedIcon />
+            ) : (
+              <FontAwesomeIcon icon={faStar} />
+            )}
           </Like>
         </TopInfo>
         <Link to={`/shop/${coffeeShop.id}`}>

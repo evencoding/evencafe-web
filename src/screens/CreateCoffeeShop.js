@@ -1,11 +1,10 @@
 import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import Button from "../components/auth/Button";
 import FormError from "../components/auth/FormError";
 import Input from "../components/auth/Input";
-import { CoffeeShopForm } from "../components/shared";
+import { CoffeeShopForm, Title } from "../components/shared";
 
 const CREATE_COFFEESHOP_MUTATION = gql`
   mutation createCoffeeShop(
@@ -27,13 +26,6 @@ const CREATE_COFFEESHOP_MUTATION = gql`
       error
     }
   }
-`;
-
-const Title = styled.div`
-  font-weight: 900;
-  display: block;
-  font-size: 24px;
-  margin-bottom: 50px;
 `;
 
 function CreateCoffeeShop() {

@@ -5,7 +5,7 @@ import { toggleShopUpdateBtn } from "../apollo";
 import Button from "../components/auth/Button";
 import FormError from "../components/auth/FormError";
 import Input from "../components/auth/Input";
-import { CoffeeShopForm } from "../components/shared";
+import { CoffeeShopForm, Title } from "../components/shared";
 
 const EDIT_COFFEESHOP = gql`
   mutation editCoffeeShop(
@@ -40,13 +40,7 @@ const UPLOAD_PHOTO = gql`
 `;
 
 const UpdateContinaer = styled(CoffeeShopForm)`
-  margin-top: 80px;
-`;
-const Title = styled.div`
-  font-weight: 900;
-  display: block;
-  font-size: 24px;
-  margin-bottom: 30px;
+  margin-top: 50px;
 `;
 
 function UpdateCoffeeShop({ id }) {

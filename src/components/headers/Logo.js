@@ -23,8 +23,8 @@ function Logo() {
     <Container>
       <div>
         <Img alt="logo" src={require("../../img/logo.png")} />
-        <div>EVEN</div>
-        <div>CAFE</div>
+        <div>NOMAD</div>
+        <div>COFFEE</div>
       </div>
     </Container>
   );

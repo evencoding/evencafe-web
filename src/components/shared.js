@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const BaseBox = styled.div`
   border: 1px solid ${(props) => props.theme.borderColor};
@@ -48,3 +50,14 @@ export const shopBtn = styled.div`
     opacity: 0.6;
   }
 `;
+
+export const Title = styled.div`
+  font-weight: 900;
+  display: block;
+  font-size: 24px;
+  margin-bottom: 30px;
+`;
+
+export function LikedIcon() {
+  return <FontAwesomeIcon icon={faStar} />;
+}
