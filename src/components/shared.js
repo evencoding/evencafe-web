@@ -9,7 +9,13 @@ export const BaseBox = styled.div`
 
 export const FatLink = styled.span`
   font-weight: 600;
-  color: rgb(142, 142, 142);
+  color: ${(props) => props.theme.shopFontColor};
+  font-size: 16px;
+  margin-right: 7px;
+  opacity: 0.8;
+`;
+export const MainFont = styled(FatLink)`
+  opacity: 1;
 `;
 
 export const CoffeeShopForm = styled.div`

@@ -33,13 +33,32 @@ const MoreCategory = styled(CategoryName)`
   padding: 6px 10px;
 `;
 
-function Category({ categoryData, totalCategories, title, selected }) {
+function Category({
+  categoryData,
+  totalCategories,
+  title,
+  selected,
+  shopCategory,
+}) {
   const history = useHistory();
   const {
     location: { pathname },
   } = history;
   const showCategory = () => {
-    if (totalCategories > 8 && !pathname.startsWith("/categories")) {
+    if (shopCategory) {
+      return shopCategory?.seeCoffeeShop?.categories?.map((category) => (
+        <React.Fragment key={category?.id}>
+          <CategoryName
+            shop={true}
+            onClick={() =>
+              history.push(`/categories/${category?.name?.split("#")[1]}`)
+            }
+          >
+            {category?.name}
+          </CategoryName>
+        </React.Fragment>
+      ));
+    } else if (totalCategories > 8 && !pathname.startsWith("/categories")) {
       return categoryData?.seeCategories?.categories
         ?.slice(0, 8)
         .map((category) => (
@@ -75,7 +94,8 @@ function Category({ categoryData, totalCategories, title, selected }) {
       <CategoryList>
         <div>
           {showCategory()}
-          {pathname.startsWith("/categories") ? null : (
+          {pathname.startsWith("/categories") ||
+          pathname.startsWith("/shop") ? null : (
             <Link to={`/categories`}>
               <MoreCategory>더보기...</MoreCategory>
             </Link>

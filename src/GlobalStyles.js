@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export const lightTheme = {
+  shopFontColor: "black",
   dark: "#B55E28",
   light: "#FED543",
   // categoryBg: "#B55E28",
@@ -22,6 +23,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  shopFontColor: "white",
   dark: "#B55E28",
   light: "#FED543",
   // categoryBg: "#FED543",

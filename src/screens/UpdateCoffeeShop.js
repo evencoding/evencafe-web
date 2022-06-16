@@ -88,7 +88,15 @@ function UpdateCoffeeShop({ id }) {
       onCompleted: onCompletedUpdate,
     }
   );
-  const onSubmitValid = ({ name, description, adress, category, avatar }) => {
+  const onSubmitValid = ({
+    name,
+    description,
+    adress,
+    category,
+    avatar,
+    latitude,
+    longitude,
+  }) => {
     if (updateLoading) {
       return;
     }
@@ -110,6 +118,8 @@ function UpdateCoffeeShop({ id }) {
         ...(name && { name }),
         ...(description && { bio: description }),
         ...(adress && { adress }),
+        ...(latitude && { latitude }),
+        ...(longitude && { longitude }),
         ...(category && { categories: category }),
         ...(avatar && { avatar: avatar[0] }),
       },
@@ -135,6 +145,8 @@ function UpdateCoffeeShop({ id }) {
           placeholder="한줄 설명 !!"
         />
         <Input {...register("adress")} type="text" placeholder="카페 주소" />
+        <Input {...register("latitude")} type="text" placeholder="latitude" />
+        <Input {...register("longitude")} type="text" placeholder="longitude" />
         <Input
           {...register("category")}
           onFocus={clearLoginError}

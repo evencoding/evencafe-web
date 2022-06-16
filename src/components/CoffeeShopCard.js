@@ -162,7 +162,6 @@ function CoffeeShopCard({ coffeeShop }) {
       id: `User:${coffeeShop?.user?.username}`,
       fields: {
         followingShops(prev) {
-          prev.map((m) => console.log(m.__ref));
           if (coffeeShop?.isFollowing) {
             return prev.filter(
               (p) => p.__ref !== `CoffeeShop:${coffeeShop?.id}`
