@@ -11,7 +11,7 @@ export const FatLink = styled.span`
   font-weight: 600;
   color: ${(props) => props.theme.shopFontColor};
   font-size: 16px;
-  margin-right: 7px;
+  margin-right: 30px;
   opacity: 0.8;
 `;
 export const MainFont = styled(FatLink)`

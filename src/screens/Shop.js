@@ -95,7 +95,7 @@ const ShopCategories = styled.div`
 const Categories = styled.div`
   position: absolute;
   top: -14px;
-  left: 70px;
+  left: 93px;
 `;
 const ShopName = styled.span`
   font-size: 30px;
@@ -175,11 +175,11 @@ function Shop() {
             <Line></Line>
             <ShopBottomInfo>
               <div>
-                <FatLink>카페 주소:</FatLink>{" "}
+                <FatLink>카페 주소</FatLink>{" "}
                 <MainFont>{data?.seeCoffeeShop?.adress}</MainFont>
               </div>
               <div>
-                <FatLink>한줄 소개:</FatLink>{" "}
+                <FatLink>한줄 소개</FatLink>{" "}
                 <MainFont>{data?.seeCoffeeShop?.bio}</MainFont>
               </div>
               <ShopCategories>
