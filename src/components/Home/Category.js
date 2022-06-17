@@ -12,7 +12,14 @@ const CategoryList = styled.div`
     align-items: center;
   }
 `;
+const CategoryGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+`;
 const CategoryName = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${(props) =>
     props.selected ? props.theme.categoryBg : null};
   color: ${(props) => props.theme.categoryColor};
@@ -75,7 +82,7 @@ function Category({
         ));
     } else {
       return categoryData?.seeCategories?.categories?.map((category) => (
-        <React.Fragment key={category?.id}>
+        <React.Fragment>
           <CategoryName
             selected={selected === category?.name ? true : false}
             onClick={() =>

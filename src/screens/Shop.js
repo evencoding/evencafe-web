@@ -103,6 +103,7 @@ const ShopName = styled.span`
   color: ${(props) => props.theme.shopFontColor};
 `;
 const ShopPhotos = styled.div`
+  margin-top: 45px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 `;
