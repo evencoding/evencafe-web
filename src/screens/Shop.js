@@ -185,7 +185,7 @@ function Shop() {
               <ShopCategories>
                 <FatLink>카테고리</FatLink>
                 <Categories>
-                  {data?.seeCoffeeShop?.categories ? (
+                  {data?.seeCoffeeShop?.categories?.length > 0 ? (
                     <Category shopCategory={data} />
                   ) : null}
                 </Categories>

@@ -107,7 +107,7 @@ const CafeCategory = styled.div`
       margin-bottom: 6px;
     }
     &:hover {
-      background-color: ${(props) => props.theme.categoryColor};
+      background-color: ${(props) => props.theme.categoryBg};
     }
   }
 `;

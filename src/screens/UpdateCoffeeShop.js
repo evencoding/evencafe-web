@@ -15,6 +15,8 @@ const EDIT_COFFEESHOP = gql`
     $name: String
     $categories: String
     $avatar: Upload
+    $latitude: String
+    $longitude: String
   ) {
     editCoffeeShop(
       id: $id
@@ -23,6 +25,8 @@ const EDIT_COFFEESHOP = gql`
       name: $name
       categories: $categories
       avatar: $avatar
+      latitude: $latitude
+      longitude: $longitude
     ) {
       ok
       id

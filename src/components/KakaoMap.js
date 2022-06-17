@@ -1,6 +1,6 @@
 const { kakao } = window;
 
-function KakaoMap(lat, lon) {
+function KakaoMap(lat = null, lon = null) {
   const container = document.getElementById("myMap");
   const markerPosition = new kakao.maps.LatLng(lat, lon);
   const markers = new kakao.maps.Marker({
