@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import bgImg from "../img/shard-2803941.jpg";
+import cafe1 from "../img/cafe-1.jpg";
+import cafe2 from "../img/cafe-2.jpg";
+import cafe3 from "../img/cafe-3.jpg";
 
 const Img = styled.div`
   height: 65vh;
@@ -13,17 +16,28 @@ const Img = styled.div`
       rgba(0, 0, 0, 0.2) 80%,
       rgba(26, 24, 25, 1)
     ),
-    url(${bgImg});
+    url(${cafe3});
   background-repeat: no-repeat;
-  background-position: center bottom;
+  background-position: center center;
   background-size: cover;
   display: flex;
   justify-content: center;
   font-size: 30px;
   font-weight: 900;
   color: ${(props) => props.theme.fontColor};
+`;
+
+const MainGreed = styled.div`
+  color: white;
+  margin-top: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   span {
-    margin-top: 20%;
+    &:not(:last-child) {
+      margin: 10px;
+    }
   }
 `;
 
@@ -42,7 +56,10 @@ const Download = styled.div`
 function HomeImg() {
   return (
     <Img>
-      <span>커피 한잔 하고 힘내세요!!</span>
+      <MainGreed>
+        <span>방문해 주셔서 감사합니다!!</span>
+        <span>❤️항상 응원합니다❤️</span>
+      </MainGreed>
       <Download>
         <img alt="andr" src={require("../img/andr.jpg")} />
         <img alt="apple" src={require("../img/apple.jpg")} />

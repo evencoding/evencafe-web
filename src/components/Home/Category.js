@@ -21,7 +21,7 @@ const CategoryName = styled.span`
   justify-content: center;
   align-items: center;
   background-color: ${(props) =>
-    props.selected ? props.theme.categoryBg : null};
+    props.selected ? props.theme.categoryBg : "null"};
   color: ${(props) => props.theme.categoryColor};
   padding: 6px 10px;
   border-radius: 10px;
@@ -71,7 +71,7 @@ function Category({
         .map((category) => (
           <React.Fragment key={category?.id}>
             <CategoryName
-              selected={true}
+              // selected={true}
               onClick={() =>
                 history.push(`/categories/${category?.name?.split("#")[1]}`)
               }
