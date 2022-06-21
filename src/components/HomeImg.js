@@ -29,11 +29,15 @@ const Img = styled.div`
 
 const MainGreed = styled.div`
   color: white;
-  margin-top: 110px;
+  margin-top: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 440px;
+  height: 200px;
+  border-radius: 30px;
+  background-color: rgba(1, 1, 1, 0.7);
   span {
     &:not(:last-child) {
       margin: 10px;

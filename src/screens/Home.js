@@ -47,25 +47,22 @@ const SEE_PROFILE_QUERY = gql`
   }
 `;
 const SEECOFFEESHOPS_QUERY = gql`
-  query seeCoffeeShops($page: Int!) {
-    seeCoffeeShops(page: $page) {
-      totalPages
-      shops {
+  query seeCoffeeShops($offset: Int!) {
+    seeCoffeeShops(offset: $offset) {
+      id
+      name
+      bio
+      adress
+      avatar
+      followers
+      isFollowing
+      categories {
         id
         name
-        bio
-        adress
-        avatar
-        followers
-        isFollowing
-        categories {
-          id
-          name
-        }
-        user {
-          username
-          avatarURL
-        }
+      }
+      user {
+        username
+        avatarURL
       }
     }
   }
@@ -102,7 +99,7 @@ function Home() {
     SEECOFFEESHOPS_QUERY,
     {
       variables: {
-        page: 1,
+        offset: 0,
       },
     }
   );
@@ -153,7 +150,7 @@ function Home() {
         {likedCoffeeShop()}
         <CoffeeShops
           title="추천 카페"
-          shops={coffeeShopsData?.seeCoffeeShops?.shops}
+          shops={coffeeShopsData?.seeCoffeeShops}
         />
       </Main>
     </Container>
