@@ -5,21 +5,21 @@ import { Link } from "react-router-dom";
 import { MenuContainer, MenuTitle } from "./MenuShared";
 
 const CategoryList = styled.div`
-  display: block;
   font-size: 16px;
-  div {
-    display: flex;
-    align-items: center;
-  }
+`;
+const DisplayCategory = styled.div`
+  display: flex;
+  align-items: center;
 `;
 const CategoryGrid = styled.div`
+  margin-top: 10px;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(9, auto);
+  grid-row-gap: 15px;
 `;
 const CategoryName = styled.span`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  text-align: center;
   background-color: ${(props) =>
     props.selected ? props.theme.categoryBg : "null"};
   color: ${(props) => props.theme.categoryColor};
@@ -71,7 +71,6 @@ function Category({
         .map((category) => (
           <React.Fragment key={category?.id}>
             <CategoryName
-              // selected={true}
               onClick={() =>
                 history.push(`/categories/${category?.name?.split("#")[1]}`)
               }
@@ -82,7 +81,7 @@ function Category({
         ));
     } else {
       return categoryData?.seeCategories?.categories?.map((category) => (
-        <React.Fragment>
+        <React.Fragment key={category?.id}>
           <CategoryName
             selected={selected === category?.name ? true : false}
             onClick={() =>
@@ -99,15 +98,18 @@ function Category({
     <MenuContainer>
       <MenuTitle>{title}</MenuTitle>
       <CategoryList>
-        <div>
-          {showCategory()}
-          {pathname.startsWith("/categories") ||
-          pathname.startsWith("/shop") ? null : (
-            <Link to={`/categories`}>
-              <MoreCategory>더보기...</MoreCategory>
-            </Link>
-          )}
-        </div>
+        {pathname.startsWith("/categories") ? (
+          <CategoryGrid>{showCategory()}</CategoryGrid>
+        ) : (
+          <DisplayCategory>
+            {showCategory()}
+            {pathname.startsWith("/shop") ? null : (
+              <Link to={`/categories`}>
+                <MoreCategory>더보기...</MoreCategory>
+              </Link>
+            )}
+          </DisplayCategory>
+        )}
       </CategoryList>
     </MenuContainer>
   );
