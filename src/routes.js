@@ -8,6 +8,7 @@ const routes = {
   searchShop: ["/search/shop", "/search/shop/:keyword"],
   editShop: "/shop/:id",
   createCoffeeShop: "/add",
+  createComment: "/comment",
   shop: "/shop/:id",
   categories: ["/categories", "/categories/:name"],
 };

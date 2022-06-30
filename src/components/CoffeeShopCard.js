@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileImage } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useReactiveVar } from "@apollo/client";
 import { LikedIcon } from "./shared";
+import { isLoggedInVar } from "../apollo";
 
 const TOGGLE_FOLLOW_COFFEESHOP_MUTATION = gql`
   mutation toggleFollowCoffeeShop($name: String!) {
@@ -135,6 +136,7 @@ const AdminUser = styled.div`
 
 function CoffeeShopCard({ coffeeShop }) {
   const history = useHistory();
+  const loggedIn = useReactiveVar(isLoggedInVar);
   const updateFollowCoffeeShop = (cache, result) => {
     const {
       data: {
@@ -178,11 +180,14 @@ function CoffeeShopCard({ coffeeShop }) {
     }
   );
   const onClick = () => {
-    toggleFollowCoffeeShop({
-      variables: {
-        name: coffeeShop?.name,
-      },
-    });
+    if (loggedIn) {
+      return toggleFollowCoffeeShop({
+        variables: {
+          name: coffeeShop?.name,
+        },
+      });
+    }
+    history.push("/login");
   };
   const seeShop = () => {
     history.push(`/shop/${coffeeShop?.id}`);

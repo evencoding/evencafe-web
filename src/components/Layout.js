@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import Demand from "./Demand";
 import Header from "./headers/Header";
 import SubHeader from "./headers/SubHeader";
 
@@ -22,12 +23,14 @@ function Layout({ children }) {
       {pathname.startsWith("/profile") ||
       pathname.startsWith("/add") ||
       pathname.startsWith("/categories") ||
+      pathname.startsWith("/comment") ||
       pathname.startsWith("/edit") ? (
         <SubHeader />
       ) : (
         <Header />
       )}
       <Content>{children}</Content>
+      <Demand />
     </Container>
   );
 }

@@ -50,7 +50,6 @@ function Login() {
       password: location?.state?.password || "",
     },
   });
-  console.log(isValid);
   const onCompleted = (data) => {
     const {
       login: { ok, error, token },

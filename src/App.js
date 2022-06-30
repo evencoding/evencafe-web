@@ -16,6 +16,8 @@ import CreateCoffeeShop from "./screens/CreateCoffeeShop";
 import Shop from "./screens/Shop";
 import Categories from "./screens/Categories";
 import EditProfile from "./screens/EditProfile";
+import CreateComment from "./screens/CreateComment";
+import AuthLayout from "./components/auth/AuthLayout";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -30,6 +32,11 @@ function App() {
               <Route path={routes.home} exact>
                 <Layout>
                   <Home />
+                </Layout>
+              </Route>
+              <Route exact path={routes.shop}>
+                <Layout>
+                  <Shop />
                 </Layout>
               </Route>
               <Route path={routes.login} exact>
@@ -65,6 +72,15 @@ function App() {
                   <Login />
                 )}
               </Route>
+              <Route exact path={routes.createComment}>
+                {isLoggedIn ? (
+                  <Layout>
+                    <CreateComment />
+                  </Layout>
+                ) : (
+                  <Login />
+                )}
+              </Route>
               <Route exact path={routes.searchShop}>
                 <Layout>
                   <SearchShop />
@@ -73,11 +89,6 @@ function App() {
               <Route exact path={routes.categories}>
                 <Layout>
                   <Categories />
-                </Layout>
-              </Route>
-              <Route exact path={routes.shop}>
-                <Layout>
-                  <Shop />
                 </Layout>
               </Route>
               <Route>

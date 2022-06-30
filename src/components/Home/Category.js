@@ -13,8 +13,12 @@ const DisplayCategory = styled.div`
 `;
 const CategoryGrid = styled.div`
   margin-top: 10px;
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(9, auto);
+  justify-items: center; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   grid-row-gap: 15px;
 `;
 const CategoryName = styled.span`
