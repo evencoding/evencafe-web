@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import CoffeeShops from "../components/Home/CoffeeShops";
@@ -69,6 +70,9 @@ function SearchShop() {
       keyword,
     },
   });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Container>
       <PageTitle title="Search" />
