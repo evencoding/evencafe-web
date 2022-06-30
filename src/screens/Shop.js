@@ -80,7 +80,7 @@ const ShopImg = styled.div`
   background-position: center bottom;
   background-repeat: repeat-y;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 0.3;
 `;
 const ShopInfo = styled.div`
   margin-top: 50px;
