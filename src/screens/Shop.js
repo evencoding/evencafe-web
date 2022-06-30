@@ -138,6 +138,25 @@ const ShopName = styled.span`
   font-size: 30px;
   font-weight: 900;
   color: ${(props) => props.theme.shopFontColor};
+  display: block;
+  position: relative;
+`;
+const LittleInfo = styled.div`
+  opacity: 0.7;
+  color: ${(props) => props.theme.shopFontColor};
+  font-size: 12px;
+  position: absolute;
+  bottom: -28px;
+  display: flex;
+  div {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    span {
+      margin-left: 7px;
+      font-size: 15px;
+    }
+  }
 `;
 const ShopPhotos = styled.div`
   margin-top: 45px;
@@ -329,7 +348,19 @@ function Shop() {
           </ShopPhotos>
           <ShopInfos>
             <ShopTopInfo>
-              <ShopName>{data?.seeCoffeeShop?.name}</ShopName>
+              <ShopName>
+                {data?.seeCoffeeShop?.name}
+                <LittleInfo>
+                  <div>
+                    <FontAwesomeIcon icon={faPencil} />{" "}
+                    <span>{commentsData?.seeComments?.length}</span>
+                  </div>
+                  <div>
+                    <LikedIcon />
+                    <span>{data?.seeCoffeeShop?.followers}</span>
+                  </div>
+                </LittleInfo>
+              </ShopName>
               <Actions>
                 <CreateComment onClick={onClick}>
                   <FontAwesomeIcon icon={faPencil} />
@@ -391,7 +422,7 @@ function Shop() {
                         <Date>2022-06-30</Date>
                         <Comment>
                           {comment?.payload?.split("\n").map((c) => (
-                            <div key={c.id} style={{ height: "23px" }}>
+                            <div key={c.id} style={{ height: "" }}>
                               {c}
                             </div>
                           ))}
